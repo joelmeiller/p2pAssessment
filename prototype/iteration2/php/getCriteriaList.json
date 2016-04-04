@@ -1,0 +1,38 @@
+{
+    "subject" : "Kriterien fuer P2P Assessement",
+    "criteriaItems" : [
+        {
+            "id" : 1,
+            "topic" : "Hält Zusagen ein",
+            "ratingItems" : [
+                { "type" : { "ref" : "1" , "label" : "Herausragend" } , "description" : "Zusagen wurden immer eingehalten", "value" : 2 , "symbol" : "+2" },
+                { "type" : { "ref" : "2" , "label" : "Überdurchschnittlich" } , "value" : 1 , "symbol" : "+1" },
+                { "type" : { "ref" : "3" , "label" : "Gut" } , "description" : "Wichtige  Zusagen wurden immer eingehalten", "value" : 0, "symbol" : "0" },
+                { "type" : { "ref" : "4" , "label" : "Unterdurchschnittlich" }, "value" : -1 , "symbol" : "-1" },
+                { "type" : { "ref" : "5" , "label" : "Ungenügend" } , "description" : "Zusagen wurden kaum oder gar nicht eingehalten", "value" : -2 , "symbol" : "-2" }
+            ]
+        },
+        {
+            "id" : 2,
+            "topic" : "Ist hilfsbereit",
+            "ratingItems" : [
+                { "type" : { "ref" : "1" , "label" : "Herausragend" } , "description" : "Hat mehrmals anderen Teammitgliedern proaktive Hilfe angeboten", "value" : 2 , "symbol" : "+2" },
+                { "type" : { "ref" : "2" , "label" : "Überdurchschnittlich" } , "value" : 1 , "symbol" : "+1" },
+                { "type" : { "ref" : "3" , "label" : "Gut" } , "description" : "Falls um Hilfe angefragt hat er oder sie dem Teammitglied weitergeholfen", "value" : 0 , "symbol" : "0" },
+                { "type" : { "ref" : "4" , "label" : "Unterdurchschnittlich" } , "value" : -1 , "symbol" : "-1" },
+                { "type" : { "ref" : "5" , "label" : "Ungenügend" } , "description" : "War nicht bereit Teammitgliedern zu helfen", "value" : -2 , "symbol" : "-2" }
+            ]
+       },
+       {
+            "id" : 3,
+            "topic" : "Verbreitet gute Stimmung",
+            "ratingItems" : [
+                { "type" : { "ref" : "1" , "label" : "Herausragend" } , "description" : "Hat mehrmals anderen Teammitgliedern proaktive Hilfe angeboten", "value" : 2 , "symbol" : "+2" },
+                { "type" : { "ref" : "2" , "label" : "Überdurchschnittlich" } , "value" : 1 , "symbol" : "+1" },
+                { "type" : { "ref" : "3" , "label" : "Gut" } , "description" : "Falls um Hilfe angefragt hat er oder sie dem Teammitglied weitergeholfen", "value" : 0 , "symbol" : "0" },
+                { "type" : { "ref" : "4" , "label" : "Unterdurchschnittlich" } , "value" : -1 , "symbol" : "-1" },
+                { "type" : { "ref" : "5" , "label" : "Ungenügend" } , "description" : "War nicht bereit Teammitgliedern zu helfen", "value" : -2 , "symbol" : "-2" }
+            ]
+       }
+    ]
+}

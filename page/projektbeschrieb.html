@@ -1,0 +1,494 @@
+    <!-- PROJECT DESCRIPTION Template -->
+    <!--<div class="row">-->
+      <h2>Motivation</h2>
+      <p>Im Rahmen der Projektschiene an der FHNW, müssen alle Teammitglieder ihre Teamkollegen bewerten anhand von vordefinierten Kriterien. Diese Bewertung wird als Peer-2-Peer Assessment bezeichnet und fliesst als Bestandteil in die Projektnote ein.</p>
+      <p>Um diese Bewertung durchzuführen, existiert aktuell nur ein sehr umständliches Excelfile als Vorlage. Dieses muss von den einzelnen Teammitgliedern ausgefüllt und an den Quality Manager (QM) versendet werden. Nachdem alle Bewertungen beim QM eingetroffen sind, muss dieser die Werte in das Masterexcel übertragen und die Endbewertung aller Teammitglieder zusammenstellen.</p>
+      <p>All diese Aufgaben sind relativ unständlich auszuführen und die Art diese zu verwalten ist veraltet. Entsprechend eignet sich der Peer-2-Peer Assessment Prozess perfekt, um über eine webbasierte Applikation unterstützt zu werden. Die Applikation soll einfach und flexibel zu bedienen sein und den bestehenden, Excel-basierten Ablauf ersetzen.</p>
+<!--    </div>
+    <div class="row">
+-->      
+      <h2>User Stories</h2>
+      <p>Im folgenden zwei Bespiele von konkreten User Stories. Zuerst aus Sicht eines Teammitgliedes Ueli, dass seine Bewertungen abgeben will. Im zweiten Fall ein Nutzerszenario für den Quality Manager, der ein neues Bewertungskriterium hinzufügen will.</p>
+      
+      <h5>Benutzerbewertung erfassen</h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1 text-center">Step</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="text-center">1</td><td>Ueli meldet sich am System an.</td></tr>
+          <tr><td class="text-center">2</td><td>Er sieht eine Übersicht seier aktuell erfassten Bewertungen.</td></tr>
+          <tr><td class="text-center">3</td><td>Ueli wählt den Teamkollegen "Markus Muster", um dessen Bewertung abzugeben.</td></tr>
+          <tr><td class="text-center">4</td><td>Er gibt für die definierten Kriterien, seine Bewertungen zwischen +2 (herausragend) und -2 (miserabel) ab.</td></tr>
+          <tr><td class="text-center">5</td><td>Nach dem er die Bewertungen erfasst hat, speichert er seine Werte.</td></tr>
+          <tr><td class="text-center">6</td><td>So verfährt mit allen Teamkollegen, bis er alle Teamkollegen inkl. sich selber bewertet hat.</td></tr>
+          <tr><td class="text-center">7</td><td>Ueli überprüft alle Werte.</td></tr>
+          <tr><td class="text-center">8</td><td>Danach schliesst er die Bewertungen ab.</td></tr>
+          <tr><td class="text-center">9</td><td>Zu guter letzt meldet er sich von der Applikation ab.</td></tr>
+        </tbody>
+      </table>
+      <h5>Kriterien erfassen</h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1 text-center">Step</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="text-center">1</td><td>Max  meldet sich als Quality Manager am System an.</td></tr>
+          <tr><td class="text-center">2</td><td>Er sieht eine Übersicht der aktuell erfassten Bewertungen aller Teammitglieder.</td></tr>
+          <tr><td class="text-center">3</td><td>Max wählt "Bewertungskriterien verwalten", um eine neues Kriterium hinzuzufügen.</td></tr>
+          <tr><td class="text-center">4</td><td>Auf der Kriterienverwaltung fügt er eines neues Kriterium mit Beschreibung "Hält Zusagen ein" und den positiven, neutralen und negativen Bewertungskriterien als Text an.</td></tr>
+          <tr><td class="text-center">5</td><td>Er speichert das neue Kriterium und informiert damit alle Teammitglieder über die Änderung.</td></tr>
+          <tr><td class="text-center">6</td><td>Danach meldet er sich von der Applikation ab.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="row">
+      <h2>Use Cases</h2>
+      <img src="img/usecase_p2passessment.png" class="img-responsive" >
+    </div>
+    
+    <div class="row">
+      <h2><small>Use Case Beschreibung</small></h2>
+      <h5><a id="uc1">UC1 - Login</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Name</td>
+          <td>Login mit Credentials</td></tr>
+          <tr><td>Beschreibung</td>
+          <td>Der Benutzer meldet sich mit seinen Credentials  an.</td></tr>
+          <tr><td>Akteure</td>
+          <td>Benutzer (Teammitglied oder Quality Manager)</td></tr>
+          <tr><td>Vorbedingung</td>
+          <td>Die URL wurde im Browser geöffnet und der Benutzer ist ausgeloggt.</td></tr>
+          <tr><td>Normalablauf</td>
+          <td><p>1. Der Benutzer gibt den Benutzernamen und das Passwort ein.</p>
+            <p>2. Der Benutzer klickt auf &quot;Anmelden&quot; um sich anzumelden.</p>
+            <p>3. Die Applikation prüft die Credentials und öffnet die Landing-Page mit der aktuellen Bewertungsübersicht (<a ng-click="scrollTo('uc2')">UC2 - Übersicht der eignen Bewertungen anzeigen</a>)</p></td></tr>
+          <tr><td>Nachbedingung</td>
+          <td>Der Benutzer ist angemeldet.</td></tr>
+          <tr><td>Alternativabläufe</td>
+          <td><p>3a. Die eingegebenen Credentials sind nicht korrekt. Die Applikation zeigt dem Benutzer eine Fehlermeldung an und bleibt auf der Loginmaske stehen.</p></td></tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc2">UC2 - Übersicht der eigenen Bewertungen anzeigen</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Name</td>
+          <td>Übersicht der eigenen Bewertungen anzeigen </td></tr>
+          <tr><td>Beschreibung</td>
+          <td>Der Benutzer sieht auf einer Übersicht all seine erfassten und offnen Bewertungen für alle Teammitglieder der Projektes inkl. sich selber.</td></tr>
+          <tr><td>Akteure</td>
+          <td>Teammitglied</td></tr>
+          <tr><td>Vorbedingung</td>
+          <td>Der Benutzer ist angemeldet</td></tr>
+          <tr><td>Normalablauf</td>
+          <td><p>1. Der Benutzer wählt die Option zur Anzeige der Übersicht.</p>
+            <p>2. Die Applikation zeigt die Übersicht mit allen Teammitgliedern und allen definierten Bewertungskriterien an.</p></td></tr>
+          <tr><td>Nachbedingung</td>
+          <td>Die Übersicht mit den eignen Bewertungen zu allen Teammitgliedern des Projektes werden anzeigt.</td></tr>
+          <tr><td>Alternativabläufe</td>
+          <td><p>1a. Nach der erfolgreichen Benutzeranmeldung (<a ng-click="scrollTo('uc1')">UC1 - Login</a>) zeigt die Applikation die Übersicht der Bewertungen als Landing-Page an.</p></td></tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc2e">UC2E - Bewertungen abschliessen (Extend UC2)</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Bewertungen abschliessen</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Um die Bewertung als final zu markieren, wird die Bewertung abgeschlossen und offiziel an den Quality Manager gesendet. Danach können keine Änderungen an der Bewertung mehr vorgenommen werden.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Teammitglied</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td><p>Die Bewertung wurde noch nicht abgeschlossen.</p></td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Benutzer wählt die Option um die Bewertung abzuschliessen.</p>
+              <p>2. Die Applikation prüft alle Bewertungen für alle Teammitgliede auf Vollständigkeit.</p>
+              <p>3. Die Appliaktion setzt den Status der Bewertung auf &quot;abgeschlossen&quot;, speichert die Bewertung (include <a ng-click="scrollTo('uc4')">UC-4 - Bewertung speichern</a>) und meldet dem Benutzer den erfolgreichen Abschluss der Bewertung.</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die Bewertung ist abgeschlossen und es können keine Bewertungen vom Benutzer mehr abgegeben werden.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>2a. Die Prüfung schlägt fehlt. Die Applikation zeigt dem Benutzer eine entsprechende Fehlermeldung an und die Bewertung wird nicht abgeschlossen.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+      
+      <h5><a id="uc3">UC3 - Teammitglied bewerten</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Teammitglied bewerten</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Benutzer wählt ein Teammitglied aus und gibt für alle Kriterien seine Bewertung ab.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Teammitglied</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td><p>Der Benutzer befindet sich auf der Bewertungsübersicht.</p>
+            <p>Die Bewertung wurde vom Benutzer noch nicht abgeschlossen.</p></td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Bentuzer wählt das Teammitglied aus.
+            </p>
+            <p>2. Die Applikation öffnet die Bewertungsmaske mit allen Kriterien für dieses Teammitglied.</p>
+            <p>3. Der Benutzer bewertet alle Kriterien, in dem er eine Option pro Kriterium (+2 bis -2) auswählt.</p>
+            <p>4. Der Benutzer wählt die Option zum &quot;Speichern&quot; oder &quot;nächstes Teammitglied bewerten&quot;, um die erfassten Werte zu speichern. (include <a ng-click="scrollTo('uc4')">UC-4 - Bewertung speichern</a>)</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Alle Bewertungen für das Teammitglied sind gespeichert.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>4a. Der Benutzer hat nicht alle Kriterien bewertet. Die Applikation zeigt dem Benutzer einen Hinweis an und speichert die Daten.</p>
+            <p>4b. Der Benutzer bricht die Bewertung ab. Die Werte werden nicht gespeichert.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc4">UC4 - Daten speichern</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Daten speichern (Bewertung, Bewertungskriterien, Teammitglieder)</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Die eingegebenen Werte werden in der Applikation persistent gespeichert.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Benutzer (Teammitglied oder Quality Manager)</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td>Alle Pflichtfelder wurden mit gültigen Werten eingegeben.</td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Bentuzer wählt die Option zum Speichern der erfassten Werte.</p>
+              <p>2. Die Applikation speichert die Daten im System und erzeugt eine Information für die Benutzer, dass sich Daten geändert haben.</p>
+              <p>3. Die Applikation meldet dem Benutzer die erfolgreiche Speicherung der Bewertung.</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die Bewertungen für das Teammitglied wurden gespeichert.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>1a. Der Benutzer wählt die Option &quot;Übersicht anzeigen&quot; (<a ng-click="scrollTo('uc2')">UC2 - Übersicht der eigenen Bewertungen anzeigen</a> oder <a ng-click="scrollTo('uc5')">UC5 - Übersicht aller Bewertungen anzeigen</a>)</p>
+<p>3a. Die Bewertung kann nicht gespeichert werden. Die Applikation zeigt dem Benutzer eine Fehlermeldung an.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc5">UC5 - Übersicht aller Bewertungen anzeigen</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Übersicht aller Bewertungen anzeigen </td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Benutzer sieht auf einer Übersicht all  erfassten und offnen Bewertungen für und von allen Teammitgliedern des Projektes.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Quality Manager</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td>Der Benutzer ist angemeldet</td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Bentuzer wählt die Option zur Anzeige der Übersicht.</p>
+              <p>2. Die Applikation zeigt die Übersicht mit allen Teammitgliedern und allen definierten Bewertungskriterien an.</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die Übersicht mit allen Teammitglieder und deren Bewertungen für alle Teammitgliedern des Projektes werden anzeigt.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>1a. Nach der erfolgreichen Benutzeranmeldung (<a ng-click="scrollTo('uc1')">UC1 - Login</a>) zeigt die Applikation die Übersicht der Bewertungen als Landing-Page an.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc6">UC6 - Bewertungskriterien verwalten</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Bewertungskriterien verwalten (hinzufügen, ändern, löschen)</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Benutzer kann neue Bewertungskriterien hinzufügen oder bestehenden ändern und löschen.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Quality Manager</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Bentuzer wählt die Option zur Bearbeitung der Bewertungskriterien.</p>
+              <p>2. Falls solche existieren zeigt die Applikation bereits erfasste Bewertungskriterien an.</p>
+              <p>3. Der Benutzer wählt die Option &quot;neues Bewertungskriterien hinzufügen&quot;.</p>
+              <p>4. Die Applikation öffnet die Eingabemaske zur Erfassung des neuen Bewertungskriteriums.</p>
+              <p>5. Der Benutzer gibt die Bewertungsbeschreibung und das Bewertungsraster mit dem positiven, neutralen und negativen Beschreibungstexten ein</p>
+              <p>6. Der Benutzer wählt die Option zum Speichern des neuen Kriterium.</p>
+              <p>7. Die Applikation speichert die Werte (<a ng-click="scrollTo('uc4')">UC4 - Daten speichern</a>).</p>
+              <p>8. Der Benutzer wählt die Option zur Bearbeitung eines bestehenden Kriterium aus.</p>
+              <p>9. Die Applikation öffnet die Eingabemaske zur Änderung eines Kriteriums mit den vordefinierten Werten.</p>
+              <p>10. Der Benutzer ändert die Bewertungsbeschreibung.</p>
+              <p>11. Die Schritte 6. &amp; 7. werden ausgeführt.</p>
+              <p>12. Der Benutzer wählt die Option zum Löschen eines bestehenden Kriteriums aus.</p>
+              <p>13. Die Applikation fragt sicherheitshalber nach, ob der Benutzer sicher ist.</p>
+              <p>14. Der Benutzer bestätigt die Löschung.</p>
+              <p>15. Schritt 7 wird ausgeführt.</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die neu hinzugefügten und geänderten Kriterien sind in der Applikation gespeichert bzw. gelöschte Kriterien sind aus der Applikation entfernt worden.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>6a / 11a. Der Benutzer hat nicht alle Werte eingegeben. Die Applikation zeigt dem Benutzer einen Hinweis an. Die Daten werden nicht gespeichert.</p>
+            <p>6b / 11b. Der Benutzer bricht die Erfassung oder Bearbeitung ab. Die Werte werden nicht gespeichert.</p>
+            <p>14a. Der Benutzer bricht die Löschung ab. Das Kriterium bleibt erhalten, bzw. die Änderung wird nicht gespeichert.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc7">UC7 - Teammitglieder verwalten</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Teammitglieder verwalten (hinzufügen, ändern, löschen)</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Benutzer kann neue Teammitglieder hinzufügen oder bestehende ändern und löschen.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Quality Manager</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Bentuzer wählt die Option zur Bearbeitung der Teammitglieder.</p>
+              <p>2. Falls solche existieren zeigt die Applikation bereites erfasst Teammitglieder an.</p>
+              <p>3. Der Benutzer wählt die Option &quot;neues Teammitglied hinzufügen&quot;.</p>
+              <p>4. Die Applikation öffnet die Eingabemaske zur Erfassung des neuen Teammitgliedes.</p>
+              <p>5. Der Benutzer gibt den Vor- und Nachnamen, sowie die Rolle im Projekt ein.</p>
+              <p>6. Der Benutzer wählt die Option zum Speichern des Teammitgliedes.</p>
+              <p>7. Die Applikation speichert die Werte (<a ng-click="scrollTo('uc4')">UC4 - Daten speichern</a>).</p>
+              <p>8. Der Benutzer wählt die Option zur Bearbeitung eines bestehenden Teammitgliedes aus.</p>
+              <p>9. Die Applikation öffnet die Eingabemaske zur Änderung eines Teammitgliedes mit den vordefinierten Werten.</p>
+              <p>10. Der Benutzer ändert die Rolle des Teammitgliedes.</p>
+              <p>11. Die Schritte 6. &amp; 7. werden ausgeführt.</p>
+              <p>12. Der Benutzer wählt die Option zum Löschen eines bestehenden Teammitgliedes aus.</p>
+              <p>13. Die Applikation fragt sicherheitshalber nach, ob der Benutzer sicher ist.</p>
+              <p>14. Der Benutzer bestätigt die Löschung.</p>
+              <p>15. Schritt 7 wird ausgeführt.</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die neu hinzugefügten und geänderten Teammitglieder sind in der Applikation gespeichert bzw. gelöschte Teammitglieder sind aus der Applikation entfernt worden.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>6a / 11a. Der Benutzer hat nicht alle Werte eingegeben. Die Applikation zeigt dem Benutzer einen Hinweis an. Die Daten werden nicht gespeichert.</p>
+              <p>6b / 11b. Der Benutzer bricht die Erfassung oder Bearbeitung ab. Die Werte werden nicht gespeichert.</p>
+              <p>14a. Der Benutzer bricht die Löschung ab. Das Teammitglied bleibt erhalten, bzw. die Änderung wird nicht gespeichert.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc7e">UC7E - Reset Passwort</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Passwort zurücksetzen</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Quality Manager kann das Passwort für einen Benutzer zurücksetzen, falls dieser sein Passwort vergessen hat.</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Quality Manager</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td><a href="scrollTo(uc7)">UC7 - Teammitglieder verwalten</a></td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Der Benutzer wählt die Option zum Zurücksetzen des Passworts.</p>
+              <p>7. Die Applikation setzt für das gewählte Teammitglied das Standartpasswort (z.B. 1234) und speichert dieses anstelle des alten Passworts(<a ng-click="scrollTo('uc4')">UC4 - Daten speichern</a>).</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Das Teammitglied kann sich mit dem Standartpasswort anmelden.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h5><a id="uc8">UC8 - Information anzeigen</a></h5>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Attribut</th>
+            <th class="col-sm-11">Beschreibung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>Information anzeigen</td>
+          </tr>
+          <tr>
+            <td>Beschreibung</td>
+            <td>Der Benutzer sieht eine Information am Bildschirm, falls sich Daten geändert haben, die ihn betreffen (z.B. geänderte Kriterien)</td>
+          </tr>
+          <tr>
+            <td>Akteure</td>
+            <td>Benutzer (Teammitglied oder Quality Manager)</td>
+          </tr>
+          <tr>
+            <td>Vorbedingung</td>
+            <td>Es wurden Daten geändert und die Applikation hat eine entsprechende Information erzeugt (Bewertung gesendet, Bewertungskriterien geändert)</td>
+          </tr>
+          <tr>
+            <td>Normalablauf</td>
+            <td><p>1. Die Applikation zeigt dem Benutzer die für ihn relevanten Informationen an.</p>
+              <p>2. Der Benutzer bestätigt die Kenntnisnahme.</p>
+              <p>3. Die Applikation löscht die benutzerspezifische Information</p></td>
+          </tr>
+          <tr>
+            <td>Nachbedingung</td>
+            <td>Die Information wird nicht mehr anzeigt.</td>
+          </tr>
+          <tr>
+            <td>Alternativabläufe</td>
+            <td><p>2a. Der Benutzer lässt die Information stehen. Dies wird solange angezeigt, bis der Benutzer die Kenntnisnahme bestätigt oder die Information hinfällig wird.</p></td>
+          </tr>
+        </tbody>
+      </table>
+<!--    </div>
+    <div class="row">
+-->      
+      <h2>Abgrenzung</h2>
+      <p>Die Gesamtprojektbewertung inklusive der weiteren Notengebung sind nicht Bestandteil dieser Applikation.</p>
+      <p>Allfällige manuelle Korrekturen der Dozenten und Projektcoaches werden nicht in dieser Applikation verwaltet. Die Abgabe gegenüber der Fachhochschule ist immer noch das Excel. Die Übertragung der Werte in das Excel sind ebenfalls nicht Betstandteil dieser Applikation</p>
+      <p>Die Web-Applikation ist hauptsächlich zur Verwendung auf grösseren Bildschirmdevices (mind. Tablet) gedacht. Eine Mobiloptimierung wird nicht vorgenommen.</p>
+    </div>
+    <div class="row">
+      <h2>Anhang - Bestehende Lösung</h2>
+      <p>Der folgende Screenshot zeigt einen Auszug aus der bestehenden Excel-Lösung:</p>
+      <img src="img/excel_p2passessment.png" class="img-responsive" />
+    <!--</div>-->
+

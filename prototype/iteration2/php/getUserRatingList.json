@@ -1,0 +1,91 @@
+{
+    
+    "user" : 
+    {
+        "id" : "2",
+        "ratingState" : "open",
+        "ratedPersonItems" : [
+            {
+                "id" : "1",
+                "name" : "Andreas Gloor",
+                "criteriaItems" : [
+                    {
+                        "id" : 1,
+                        "rating" : 1,
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : 2,
+                        "rating" : -2,
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "3",
+                "name" : "Elena Mastrandrea",
+                "criteriaItems" : [
+                    {
+                        "id" : 1,
+                        "rating" : -1,
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : 2,
+                        "rating" : 2,
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "4",
+                "name" : "Joël Meiller",
+                "criteriaItems" : [
+                    {
+                        "id" : 1,
+                        "rating" : 2,
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : 2,
+                        "rating" : 1,
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "5",
+                "name" : "Benjamin Schatzmann",
+                "criteriaItems" : [
+                    {
+                        "id" : 1,
+                        "rating" : 0,
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : 2,
+                        "rating" : -1,
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },               
+            {
+                "id" : "2",
+                "name" : "Me, Myself And I",
+                "ref" : "self",
+                "criteriaItems" : [
+                    {
+                        "id" : 1,
+                        "rating" : 1,
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : 2,
+                        "rating" : -1,
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            }
+        ]
+    } 
+}

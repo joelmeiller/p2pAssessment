@@ -1,0 +1,93 @@
+    <!-- SOLUTION DESIGN Template -->
+    <!--<div class="row">-->
+      <h2>ER/RM Diagramms</h2>
+      <h2><small>Basis Entity-Relation Diagramm (ER)</small></h2>
+      <p>Die Basis des ER Diagrammes ist relativ einfach aufgebaut und sieht wie folgt aus</p>
+      <img src="img/er_base_p2passessment.png" class="img-responsive" />
+      <p>Das bewertende Teammitglied ist gleichzeitig User und hat einen Namen, Passwort und das Attribut für den Status der Gesamtbewertung (mit den Zuständen offen, abgeschlossen). Er muss für jedes Kriterium, dass vorgegeben ist, für jedes Teammitglied bewerten. Daher hat er für n Kriterien jeweils m Teammitglieder zu bewerten. Die Bewertung hängt direkt am Teammitglied. Das Kriterium selbst hat nur die Attribute für die Fragestellung und den positiven, neutralen und ungenügenden Beschreibungen für das Bewertungsraster.</p>
+      <p>Die dem Benutzer anzuzeigenden Information sind als eigene Entität dargestellt und weisen eine n-1 Beziehung zum Teammitglied auf.</p>
+      
+	  <h2><small>Finales relationales Datenbankmodell (RM)</small></h2>
+      <p>Das daraus resultierende RM Diagramm sieht etwas komplexer aus, enthält aber in den Grundzügen die n:m Beziehung zwischen <i>Teammember</i> und <i>Criteria</i>. Um Redundanzen zu vermeiden wurde die Rolle in der Tabelle <i>Role</i> ausgelagert, da für alle Projekte maximal acht verschiedene Rollen auftreten sollten.</p>
+      <p>Zusätzlich ist der Aufhänger <i>Project</i> hinzugekommen. Dies ermöglicht die Anwendung zentral (eine Instanz) für mehrere Projekte zu verwenden (wird mit der ersten Version aber nicht unterstütz (Siehe <a ui-sref="development">Entwicklung</a> für weiterführende Information zum Stand und den offenen/erweiterbaren Punkten)</p>
+      <img src="img/rm_database_p2pAssessment.png" class="img-responsive" />
+      <p></p>
+      <h2>Software Architektur</h2>
+      <h2><small>Übersicht der verwendeten Technologien/Frameworks</small></h2>
+      <p>Im folgenden Diagramm sind die Technologien und die darin verwendeten Frameworks ersichtlich.</p>
+      <img src="img/technology_overview.png" class="img-responsive" />
+      <h2><small>Angular Serviceaufbau</small></h2>
+      <p>Die Webapplikation wird durch das AngularJS Framework gesteuert. In der Grafik unten ist der Modul, Service- und Factoryaufbau der gesamten Applikation ersichtlich.</p>
+      <img src="img/client_angular_architecture.png" class="img-responsive" />
+      <h2><small>PHP Klassendiagramm</small></h2>
+      <p>In PHP wird die Klasse RequestHandler.php aufgerufen, welche zentral alle Request vom Client verarbeitet und die entsprechenden Verarbeitung im DataHandler Model aufruft.</p>
+      <img src="img/server_php_class_diagram.png" class="img-responsive" />
+    <!--</div>
+    <div class="row">-->
+      <h2>Operationen</h2>
+      <p>Die Operationen können gemäss der Use Cases in drei Hauptkategorien unterteilt werden.</p>
+      <ul>
+        <li>Allgemeine Operationen (Benutzeroperationen)</li>
+      	<li>Teammitglied bezogene Operationen</li>
+        <li>Quality Manager bezogene Operationen</li>
+      </ul>
+      <h2><small>Benutzeroperationen</small></h2>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Use Case</th>
+            <th class="col-sm-2">Operation Name</th>
+            <th class="col-sm-1">Ident. Required<br />(JWT Token)</th>
+            <th class="col-sm-3">Arguments</th>
+            <th class="col-sm-5">Return Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><a ui-sref="projektbeschrieb({id: 'uc1'})" ><a ui-sref="projektbeschrieb({id:'uc1'})">UC1</a></a></td><td>checkLogin()</td><td>-</td><td>Username / Password</td><td>Status of Operation, <br />Username, UserId, Role</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc2'})">UC2</a> / <a ui-sref="projektbeschrieb({id:'uc3'})">UC3</a> / <a ui-sref="projektbeschrieb({id:'uc5'})">UC5</a> / <a ui-sref="projektbeschrieb({id:'uc6'})">UC6</a></td><td>getCriteriaList()</td><td>-</td><td>-</td><td>List of Criteria items</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc8'})">UC8</a></td><td>getInformationListByUser()</td><td>Yes</td><td>-</td><td>List of Information items</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc8'})">UC8</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>deleteInformation()</td><td>Yes</td><td>InformationId</td><td>Status of Operation</td></tr>
+        </tbody>
+      </table>
+      <h2><small>Teammitglied bezogene Operationen</small></h2>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Use Case</th>
+            <th class="col-sm-2">Operation Name</th>
+            <th class="col-sm-1">Ident. Required<br />(JWT Token)</th>
+            <th class="col-sm-3">Arguments</th>
+            <th class="col-sm-5">Return Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc2'})">UC2</a></td><td>getRatingListByUser()</td><td>Yes</td><td>-</td><td>List of Teammember items containing the List of Rating items</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc2e'})">UC2E</a></td><td>closeRating()</td><td>Yes</td><td></td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc3'})">UC3</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>updateRating()</td><td>Yes</td><td>TeammemberId, <br />List of Rating items</td><td>Status of Operation</td></tr>
+        </tbody>
+      </table>
+      <h2><small>Quality Manager bezogene Operationen</small></h2>
+      <table class="table table-condensed" >
+        <thead>
+          <tr>
+            <th class="col-sm-1">Use Case</th>
+            <th class="col-sm-2">Operation Name</th>
+            <th class="col-sm-1">Ident. Required<br />(JWT Token)</th>
+            <th class="col-sm-3">Arguments</th>
+            <th class="col-sm-5">Return Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc7e'})">UC7E</a></td><td>resetLogin()<br /><i>(not implemented)</i></td><td>Yes</td><td>TeammemberId</td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc5'})">UC5</a></td><td>getRatingList()</td><td>Yes</td><td>-</td><td>List of Teammember items with a List of Rating items with again a List of rated Teammember Items</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc6'})">UC6</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>insertCriteria()</td><td>Yes</td><td>Criteria</td><td>Status of Operation<br />CriteriaId</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc6'})">UC6</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>updateCriteria()</td><td>Yes</td><td>Criteria</td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc6'})">UC6</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>deleteCriteria()</td><td>Yes</td><td>CriteriaId</td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc7'})">UC7</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>insertTeammember()</td><td>Yes</td><td>Teammember</td><td>Status of Operation<br />TeammemberId</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc7'})">UC7</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>updateTeammember()</td><td>Yes</td><td>Teammember</td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc7'})">UC7</a> (incl. <a ui-sref="projektbeschrieb({id:'uc4'})">UC4</a>)</td><td>deleteTeammember()</td><td>Yes</td><td>TeammemberId</td><td>Status of Operation</td></tr>
+          <tr><td><a ui-sref="projektbeschrieb({id:'uc5'})">UC5</a></td><td>updateRatingOption()</td><td>Yes</td><td>RatingOption<br /><i>(boolean)</i></td><td>Status of Operation</td></tr>
+        </tbody>
+      </table>
+    <!--</div>-->
+

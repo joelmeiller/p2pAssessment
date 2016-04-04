@@ -1,0 +1,182 @@
+{
+    "project" : {
+        "title" : "VisuLab2"
+    },
+    "subject" : "Kriterien fuer P2P Assessement",
+    "criteria" : [
+        {
+            "id" : "1",
+            "topic" : "Halt Zusagen ein",
+            "plus" : "Zusagen wurden immer eingehalten",
+            "zero" : "Wichtige  Zusagen wurden immer eingehalten",
+            "minus" : "Zusagen wurden kaum oder gar nicht eingehalten",
+            "ratings" : [
+                {
+                    "value" : "2",
+                    "text" : "+2"
+                },
+                {
+                    "value" : "1",
+                    "text" : "+1"
+                },
+                {
+                    "value" : "0",
+                    "text" : "0"
+                },
+                {
+                    "value" : "-1",
+                    "text" : "-1"
+                },
+                {
+                    "value" : "-2",
+                    "text" : "-2"
+                }
+            ],
+            "ratedPersons" : [
+                {
+                    "id" : "1",
+                    "name" : "Marco Plüss",
+                    "rating" : "2",
+                    "comment" : "noch nichts"
+                },
+                {
+                    "id" : "1",
+                    "name" : "Bruno Huber",
+                    "rating" : "-1",
+                    "comment" : "schon was"
+                }                      
+            ]
+        },
+        {
+            "id" : "2",
+            "topic" : "Ist hilfsbereit",
+            "plus" : "Hat mehrmals anderen Teammitgliedern proaktive Hilfe angeboten",
+            "zero" : "Falls um Hilfe angefragt hat er oder sie dem Teammitglied weitergeholfen",
+            "minus" : "War nicht bereit Teammitgliedern zu helfen",
+            "ratings" : [
+                {
+                    "value" : "2",
+                    "text" : "+2"
+                },
+                {
+                    "value" : "1",
+                    "text" : "+1"
+                },
+                {
+                    "value" : "0",
+                    "text" : "0"
+                },
+                {
+                    "value" : "-1",
+                    "text" : "-1"
+                },
+                {
+                    "value" : "-2",
+                    "text" : "-2"
+                }
+            ],
+            "ratedPersons" : [
+                {
+                    "id" : "1",
+                    "name" : "Marco Plüss",
+                    "rating" : "-1",
+                    "comment" : "noch nichts"
+                },
+                {
+                    "id" : "1",
+                    "name" : "Bruno Huber",
+                    "rating" : "1",
+                    "comment" : "schon was"
+                }                      
+            ]
+
+        }
+    ],
+    "user" : 
+    {
+        "id" : "1",
+        "name" : "Marco Plüss",
+        "ratedPersons" : [
+            {
+                "id" : "2",
+                "name" : "Andreas Gloor",
+                "criteria" : [
+                    {
+                        "id" : "1",
+                        "rating" : "1",
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : "2",
+                        "rating" : "-2",
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "3",
+                "name" : "Elena Mastrandrea",
+                "criteria" : [
+                    {
+                        "id" : "1",
+                        "rating" : "-1",
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : "2",
+                        "rating" : "2",
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "4",
+                "name" : "Joël Meiller",
+                "criteria" : [
+                    {
+                        "id" : "1",
+                        "rating" : "1",
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : "2",
+                        "rating" : "1",
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "6",
+                "name" : "Michel Plüss",
+                "criteria" : [
+                    {
+                        "id" : "1",
+                        "rating" : "2",
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : "2",
+                        "rating" : "-1",
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            },
+            {
+                "id" : "5",
+                "name" : "Benjamin Schatzmann",
+                "criteria" : [
+                    {
+                        "id" : "1",
+                        "rating" : "2",
+                        "comment" : "noch nichts"
+                    },
+                    {
+                        "id" : "2",
+                        "rating" : "-1",
+                        "comment" : "noch nichts"
+                    }                        
+                ]
+            }               
+        ]
+    } 
+}

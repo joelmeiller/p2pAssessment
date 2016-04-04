@@ -1,0 +1,11 @@
+{
+    "project" : {
+        "title" : "VisuLab2"
+    },
+    "loginState" : "200",
+    "user" : {
+        "id" : "2",
+        "name" : "Michel Plüss",
+        "role" : { "text" : "Projektleiter", "shortCut" : "PL" }
+    }
+}

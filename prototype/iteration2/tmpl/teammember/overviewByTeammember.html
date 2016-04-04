@@ -1,0 +1,36 @@
+      <!-- ***************************** -->
+      <!-- Rating Overview by Teammember -->
+      <!-- ***************************** -->
+      
+      <div>
+      
+        <!-- Rating Header -->
+        <div class="row">
+          <div class="col-sm-2">&nbsp;</div>
+          <div class="col-sm-2" ng-repeat="criteriaRating in criteriaItems[0].ratingItems"><h3><small>{{::criteriaRating.type.label}}<br />( {{::criteriaRating.symbol}} )</small></h3></div>
+        </div>
+        
+        <!-- Iteration over teammember -->
+        <div ng-repeat="ratedMember in user.ratedPersonItems">
+          <a ui-sref="ratingForm" ng-click="updatePerson(ratedMember)" >
+            <hr class="fatLine" />          
+            <p><b>{{::ratedMember.name}}</b></p>
+            <!-- Iteration over criteriaItems items -->
+            <div class="row highlight" ng-repeat="crit in criteriaItems track by crit.id">
+              <div class="col-sm-2 linkRow">{{::crit.topic}}</div>
+               
+              <!-- Iteration over rated criteriaItems items -->
+              <div class="col-sm-2 text-center" ng-repeat="criteriaRating in crit.ratingItems track by criteriaRating.value">                
+                <!-- <div ng-if="rate.rating === criteriaRating.value">  -->
+                <div ng-repeat="ratedCriteria in ratedMember.criteriaItems | filter: { id: crit.id, rating: criteriaRating.value } :true ">   
+                  <a href="#" tooltip="{{ratedCriteria.comment}}" tooltip-placement="right"><div class="circle ref{{criteriaRating.type.ref}} linkRow" >{{criteriaRating.symbol}}</div></a>
+                </div>
+              </div><!-- end rated crieria items -->
+               
+            </div><!-- end criteriaItems items -->
+          </a>    
+        </div><!-- end teammebers -->
+        
+      </div>
+
+<!--<div ng-repeat="ratedCriteria in ratedMember.criteriaItems | filter: { criteriaItemsId: crit.id, rating: criteriaRating.value } :true ">-->

@@ -1,0 +1,61 @@
+
+
+.fatLine{
+	border-bottom: 1.5px solid #333;
+}
+.loginBuffer{
+	padding: 10px;
+	background-color: #EEE; 
+}
+.informationBuffer {
+	padding-top: 20px;
+}
+.information {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.rowBuffer{
+	margin-bottom: 40px;
+}
+.buttonBuffer{
+	padding-top: 8px;
+	padding-right: 20px;
+}
+.linkRow{
+	color: #000;
+}
+.tooltip {
+	color: #FFF;
+}
+.highlight:hover{
+	cursor: pointer;
+	background-color: #EEE;
+}
+
+.circle{
+	margin-top: -5px;
+    width: 30px;
+    height: 30px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+	
+	background-color: #CCC;
+	color: #000;
+	padding-top: 4px;
+}
+.circle.ref1{
+	background-color: #A6FF00;
+}
+.circle.ref2{
+	background-color: #A6AC00;
+}
+.circle.ref3{
+	background-color: #A67F00;
+}
+.circle.ref4{
+	background-color: #A64100;
+}
+.circle.ref5{
+	background-color: #A60000;
+}

@@ -1,0 +1,45 @@
+{
+    "subject" : "Kriterien fuer P2P Assessement",
+    "criteriaItems" : [
+        {
+            "id" : 1,
+            "topic" : "Hält Zusagen ein",
+            "ratingItems" : [
+                { "ref" : "1"  , "description" : "Zusagen wurden immer eingehalten", "value" : 2 , "symbol" : "+2" },
+                { "ref" : "2"  , "value" : 1 , "symbol" : "+1" },
+                { "ref" : "3"  , "description" : "Wichtige  Zusagen wurden immer eingehalten", "value" : 0, "symbol" : "0" },
+                { "ref" : "4" , "value" : -1 , "symbol" : "-1" },
+                { "ref" : "5" ,  "description" : "Zusagen wurden kaum oder gar nicht eingehalten", "value" : -2 , "symbol" : "-2" }
+            ]
+        },
+        {
+            "id" : 2,
+            "topic" : "Ist hilfsbereit",
+            "ratingItems" : [
+                { "ref" : "1"  , "description" : "Hat mehrmals anderen Teammitgliedern proaktive Hilfe angeboten", "value" : 2 , "symbol" : "+2" },
+                { "ref" : "2"  , "value" : 1 , "symbol" : "+1" },
+                { "ref" : "3"  , "description" : "Falls um Hilfe angefragt hat er oder sie dem Teammitglied weitergeholfen", "value" : 0 , "symbol" : "0" },
+                { "ref" : "4"  , "value" : -1 , "symbol" : "-1" },
+                { "ref" : "5" ,  "description" : "War nicht bereit Teammitgliedern zu helfen", "value" : -2 , "symbol" : "-2" }
+            ]
+       },
+       {
+            "id" : 3,
+            "topic" : "Verbreitet gute Stimmung",
+            "ratingItems" : [
+                { "ref" : "1"  , "description" : "Hat mehrmals anderen Teammitgliedern proaktive Hilfe angeboten", "value" : 2 , "symbol" : "+2" },
+                { "ref" : "2"  , "value" : 1 , "symbol" : "+1" },
+                { "ref" : "3"  , "description" : "Falls um Hilfe angefragt hat er oder sie dem Teammitglied weitergeholfen", "value" : 0 , "symbol" : "0" },
+                { "ref" : "4"  , "value" : -1 , "symbol" : "-1" },
+                { "ref" : "5" ,  "description" : "War nicht bereit Teammitgliedern zu helfen", "value" : -2 , "symbol" : "-2" }
+            ]
+       }
+    ],
+    "ratingReferenceItems" : [
+                {  "ref" : "1" , "label" : "Herausragend", "value" : 2 , "symbol" : "+2" },
+                {  "ref" : "2" , "label" : "Überdurchschnittlich" , "value" : 1 , "symbol" : "+1" },
+                {  "ref" : "3" , "label" : "Gut" , "value" : 0, "symbol" : "0" },
+                {  "ref" : "4" , "label" : "Unterdurchschnittlich" , "value" : -1 , "symbol" : "-1" },
+                {  "ref" : "5" , "label" : "Ungenügend" , "value" : -2 , "symbol" : "-2" }
+            ]
+}

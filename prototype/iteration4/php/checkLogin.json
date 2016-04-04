@@ -1,0 +1,17 @@
+{
+    "project" : {
+        "title" : "VisuLab2"
+    },
+    "loginState" : "200",
+    "user" : {
+        "id" : "2",
+        "name" : "Michel Plüss",
+        "role" : { "text" : "Projektleiter", "symbol" : "PL" },
+        "options" : {
+        	"self" : true,
+        	"all" : true,
+        	"rating" : { "available" : true, "closed" : false },
+        	"edit" : true
+        }
+    }
+}

@@ -1,0 +1,63 @@
+  <!-- ***************************** -->
+  <!-- Rating Form for a Teammember  -->
+  <!-- ***************************** -->
+  
+  <!-- Teammember Selection -->
+  <div class="row rowBuffer">
+    <ul class="nav nav-pills" id="formNav" >  
+      <li class="" ng-repeat="ratedPerson in user.ratedPersonItems" repeat-complete="setSelectedPerson()">
+        <a ui-sref="ratingForm" ng-click="updatePerson(ratedPerson)" >{{::ratedPerson.name}}</a>
+      </li>
+    </ul>
+          <!--<label class="btn btn-primary" ng-model="selectedPerson" ng-click="updatePerson(ratedPerson)" ng-repeat="ratedPerson in user.ratedPersonItems" btn-radio="ratedPerson" >{{::ratedPerson.name}}</label>-->
+  </div>
+
+  <!-- Rating Form -->
+  <form class="form-horizontal" role="form" >
+    <fieldset>
+      <!-- Text input-->
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <label class="col-md-2 control-label" for="name" >Name</label>  
+        <div class="col-md-10"><p class="form-control-static" >{{selectedPerson.name}}</p></div>  
+      </div>
+    </div>
+    </fieldset>
+    <hr class="col-md-12" />
+    <!-- Multiple {{crit.nr}} (inline) -->
+    <div class="row" ng-repeat="crit in selectedPerson.criteriaItems" >
+    <fieldset>
+      <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-2" ng-repeat="criteriaRating in crit.criteriaRatingItems">{{::criteriaRating.description}}</div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label" >{{::crit.topic}}</label>
+        <div class="col-md-2" ng-repeat="criteriaRating in crit.criteriaRatingItems">
+          <label class="radio-inline" >
+            <input ng-value="criteriaRating.value" ng-model="$parent.crit.rating" type="radio" ng-disabled="ratingClosed" >
+            {{::criteriaRating.symbol}}
+          </label> 
+        </div>
+      </div>
+      </fieldset>
+      <div class="form-group">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-8">
+          <input id="comment{{crit.nr}}" name="comment{{crit.nr}}" ng-value="crit.comment" ng-model="crit.comment" class="form-control input-md" type="text" ng-disabled="ratingClosed" >
+        </div>
+      </div>
+      <hr />
+    </div>
+    <!-- Button -->
+    <div class="form-group">
+      <div class="col-md-6 text-right">
+        <div ng-show="showBack">
+          <button id="back" name="back" class="btn btn-primary" ng-click="back()" >{{backItem.text}}</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button id="next" name="next" class="btn btn-primary" ng-click="next()" >{{nextItem.text}}</button>
+      </div>
+    </div>
+  </form>

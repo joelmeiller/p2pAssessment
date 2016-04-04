@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>P2P Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="P2P Assessment Form for IP projects@FHNW">
+  <meta name="author" content="Joël Meiller">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  
+	<script type="text/javascript" src="js/vendor/jquery.min.js"></script>
+	<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular.js"></script>
+    <script type="text/javascript" src="js/vendor/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="js/vendor/ui-bootstrap-custom-0.12.1.min.js"></script>
+    <script type="text/javascript" src="js/vendor/ui-bootstrap-custom-tpls-0.12.1.min.js"></script>
+    
+	<script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body ng-app="ipApp" ng-controller="ipAppCtrl">
+  <div class="container">
+  
+    <!-- *************** -->
+    <!-- Title Jumbotron -->
+    <!-- *************** -->
+    <div class="row rowBuffer">
+      <div class="nav navbar-fixed-top text-right loginBuffer">
+        <p ng-show="loggedIn">Angemeldet als {{user.name}} | <a ui-sref="#" ng-click="logout()">Abmelden</a></p>
+        <p ng-hide="loggedIn"><a ui-sref="#" ng-click="loginModal()">Anmelden</a></p>
+      </div>
+    </div>
+    
+    <div class="row rowBuffer">
+      <div class="col-sm-5">
+        <h1>P2P - Assessement</h1>
+        <h1 ng-show="loggedIn"><small>{{::project.title}}</small></h1>     
+      </div>
+      <div class="col-sm-7 informationBuffer">
+        <alert class="information" ng-repeat="info in informationItems" type="{{info.type}}" close="deleteInfo($index)">{{info.text}}</alert>
+      </div>
+    </div>   
+    <!-- *************** -->
+    <!-- Content         -->
+    <!-- *************** -->    
+    <div class="row" ng-show="showContent">
+        
+      <!-- ********** -->
+      <!-- Navigation -->
+      <!-- ********** -->
+
+      <nav class="navbar navbar-inverse" role="navigation">
+        <ul class="nav navbar-nav col-sm-8" ng-show="showContent">
+            <li><a ui-sref="overview">Übersicht</a></li>
+            <li><a ui-sref="ratingForm">Bewertung</a></li>
+        </ul>
+        <div class="col-sm-4 text-right buttonBuffer" ng-show="showContent">
+          <button type="button" ng-hide="ratingClosed" class="btn btn-danger" ng-click="closeUserRating()" >Bewertung abschliessen</button>
+          <button type="button" ng-show="ratingClosed" class="btn btn-primary" disabled >Bewertung abgeschlossen</button>
+        </div>
+
+      </nav>     
+    </div>
+    
+    <div ui-view></div>
+
+  </div>
+
+
+  <!-- ************ -->
+  <!-- Login Modal  -->
+  <!-- ************ -->
+  
+  <modal title="P2P Assessment Login" visible="showLogin">
+  <form role="form">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password" />
+    </div>
+    <button ng-click="login()" class="btn btn-default">Login</button>
+  </form>
+  </modal>
+
+</body>
+</html>

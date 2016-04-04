@@ -1,0 +1,42 @@
+    <!-- INSTALLATION Template -->
+    <!--<div class="row">-->
+      <h2>Download</h2>
+      <p>Die gesamte Applikation kann als zip-File heruntergeladen werden.</p>
+      <p><a href="download/p2pAssessment_V1.0.zip" target="_blank">p2pAssessment Applikation V1.0 (zip)</a></p>
+      <p></p>
+      <h2>System Requirements</h2>
+      <p>Folgende Anforderungen an den Web-Server sollten erfüllt sein, damit die Applikation reibungslos funktioniert.</p>
+      <ul>
+        <li>Es wird empfohlen mind. <b>PHP Version 5.3.0</b> installiert zu haben.</li>
+      	<li>Die PHP Installation sollte die Extension <b>MySQLi Version 5.0.0</b> untersützen.</li>
+        <li>Datenbanksystem ab mind. <b>MySQL Version 5.0</b></li>
+      </ul>
+      <h2>Setup</h2>
+      <p>Es existiert kein automatisierter Installer und die Applikation muss manuell aufgesetzt werden. Es werden <u>admin-Rechte</u> für die MySQL-Datenbank und die Filemanipulation auf dem Web-Server benötigt.</p>
+      <h2><small>Applikation auf dem Web-Server installieren</small></h2>
+      <p>Zuerst müssen die dekomprimierten Originalfiles (download als zip <a href="download/p2pAssessment_V1.0.zip" target="_blank">hier</a>), in der vorgegeben Struktur in das entsprechende Verzeichnis des Web-Server kopiert/extrahiert werden.</p>
+      <p>Danach muss die Datenbank <i>p2p_assessment_db</i> durch ausführen des Files <a href="download/p2p_assessment_V1.0_MySQL_DB_setup.sql" target="_blank"><i>db/p2p_assessment_V1.0_MySQL_DB_setup.sql</i> </a> erstellt und aufgesetzt werden.
+      <h2><small>DB Connection</small></h2>
+      <p>Im File <i>php/DBConnection.php</i> müssen die MySQL Datenbank der geltende Benutzernamen und das Passwort gesetzt werden</p>
+      <img src="img/installation_db_access.png" />
+      <p>&nbsp;</p>
+      <h2><small>Projekt</small></h2>
+      <p>Der Projektname muss manuell gesetzt werden, in dem das Attribut <i>title</i> in der Tabelle <i>project</i> geändert wird.</p>
+      <p>Vorlage für UPDATE-Statement: <code>UPDATE p2p_assessment_db.project SET title='<i style="color: #060;">&lt;Titel&gt;</i>' WHERE id='1';</code>
+      <h2>Test</h2>
+      <p>Rufe die Webapplikation auf. Es sollte ein Login-Fenster erscheinen und man kann sich mit dem Admin (QM) Benutzer einloggen</p>
+      <table>
+      	<tr>
+          <th>Benutzername</td>
+          <th>Passwort</td>
+        </tr>
+        <tr>
+          <td>Admin</td>
+          <td>p2pChef</td>
+        </tr>
+      </table>
+      <p>Es werden initial keine Testdaten gespeichert und die Übersicht ist leer. Für Testdaten siehe <a ui-sref="testing">Testing</a></p>
+      <p>&nbsp;</p>
+      <p><b>Done! Your are ready to go :-)<b></p>
+    <!--</div>-->
+

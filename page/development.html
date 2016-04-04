@@ -1,0 +1,39 @@
+    <!-- DEVELOPMENT Template -->
+    <!--<div class="row">-->
+      <h2>Entwicklung</h2>
+      <h2><small>Offene Anforderungen</small></h2>
+      <p>Die folgenden Anforderungen wurden aus Zeit- oder Komplexitätsgründen noch nicht umgesetzt und sollten für eine allfällige produktive Verwendung in der Projektschiene nachträglich umgesetzt werden.</p>
+      <ul>
+        <li>Es ist aktuell nicht möglich als Benutzer (Admin) ein neues Projekt anzulegen. Das Projekt wird während der <a ui-sref="installation">Installation</a> fix in der Datenbank gesetzt. In einer finalen Ziellösung muss die Verwaltung von Projekten möglich sein. Dito gilt für die Bewirtschaftung bzw. für das Anlegen von neuen Quality Managers (Admin Usern), der Erweiterung um einen Superuser (Rootadmin) und einer FH weiten Instanzierung einer zentralen Applikation (die aktuelle Version wurde explizit für das Projekt VisuLab2 angelegt und kann nur für dieses verwendet werden).</li>
+        <li>Die Funktion <i>ResetLogin</i> wurde noch nicht umgesetzt. D.h. beim Klick auf das Reset Icon passiert aktuell noch nichts</li>
+      	<li>Das Login funktioniert zwar relativ zuverläsig, jedoch müsste hier zwingend eine Revision und mit grosser Wahrscheinlichkeit Anpassungen vorgenommen werden, um die Applikation mit einem sicheren Anmeldesystem zu versehen.</li>
+      </ul>
+      <h2><small>Bekannte Issues</small></h2>
+      <p>Die Applikation wurde bereits im Rahmen des Testduchlaufs für die p2p-Assessment Bewertung im Projekt VisuLab2 von neun Personen auf unterschiedlichen Browsern getestet, bzw. erfolgreich verwendet.</p>
+      <p>Einige, wenige Probleme sind dabei aufgetreten und hier aufgeführt.</p>
+      <ul>
+        <li>Page-Routing bei Back-Navigation: Die Backnavigation ist noch nicht stabil. Es kommt vor, dass beim Anwählen von Zurück im Browser die Login Page unter dem Hauptmenu angezeigt wird. Die Applikation kann aber weiter genutzt werden.</li>
+      	<li>IE Unterstützung noch nicht garantiert. Die Tests im Projektteam haben zwar gezeigt, dass die Applikation auch mit dem Internet Applikation mind. ab Version 10 verwendet werden kann, jedoch fehlen explizite Testfälle die das beweisen. Die Möglichkeit von browserbedingten Problemen ist nicht ausgeschlossen.</li>
+        <li>Probleme bei der Anzeige von Sonderzeichen. Die Applikation verwendet UTF8. Bei der Umwandlung der Datenbank Zeichen in JSON mit php->json_encode() und dem Einlesen der JSON Daten in JavaScript gibt es noch vereinzelt Probleme bei Sonderzeichen.</li>
+        <li>Verlinkungen aus der Übersicht noch nicht konsistent. Überarbeitung notwendig</li>
+      </ul>
+      <h2><small>Source-Code Optimierung</small></h2>
+      <p>Der Code wurde iterativ aufgebaut und es gibt ein paar Punkte die überarbeitet und verbessert werden sollten:</p>
+      <ul>
+        <li>Source-Code Formatierung nicht konsistent (Einrückungen, etc.)</li>
+        <li>Hinzufügen von Kommentaren für wichtige Funktionen und Programmabläufe</li>
+        <li>Verbesserung des Error-Handling im Bezug auf Backend-Calls</li>
+      </ul>
+      <h2>Erweiterungen</h2>
+      <p>Um den ersten Wurf als Projektabgabe im Modul webeC erfolgreich abschliessen zu können, habe ich einige Restrikitionen bezüglich Anforderungen definiert. Um die Software vollumfänglich für den p2p-Assessment Prozess zu verwenden, müsste die Applikation auf jeden Fall noch mit einigen zusätzlichen Funktionen erweitert werden.</p>
+      <p>Im folgenden eine nicht abschliessende List von möglichen Erweiterungen:</p>
+      <ul>
+        <li>Neue Rolle <i>Coach</i> mit zusätzlichen Funktionen zur Auswertung und der abschliessenden Berechnung der Bewertung/Note</li>
+        <li>Erweiterte Filter- und Sortierfunktionen</li>
+        <li>Verlinkung der Bewertungen</li>
+      	<li>Erweiterung um grafische Auswertungen</li>
+        <li>Report-Möglichkeiten (z.B. Ausdruck als PDF)</li>
+        <li>...</li>
+      </ul>
+    <!--</div>-->
+

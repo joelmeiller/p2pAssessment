@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>P2P Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="P2P Assessment Form for IP projects@FHNW">
+  <meta name="author" content="Joël Meiller">
+
+	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+	<!--script src="js/less-1.3.3.min.js"></script-->
+	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="img/favicon.png">
+  
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/ui-bootstrap-custom-0.12.1.min.js"></script>
+    <script type="text/javascript" src="js/ui-bootstrap-custom-tpls-0.12.1.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+</head>
+
+<body ng-app="ipApp" ng-controller="ipController">
+  <div class="container">
+    <h1>P2P - Assessement</h1>
+    <h1><small>{{::data.project.title}}</small></h1>
+    <div ng-show="showContent">
+    
+      <!-- ********** -->
+      <!-- Navigation -->
+      <!-- ********** -->
+
+      <div class="row">
+        <div class="col-md-3 btn-group">
+          <label class="btn btn-primary" ng-model="overview" ng-click="toggleOverview()" btn-checkbox>{{::overviewText}}</label>
+        </div>
+        <div class="col-md-9 btn-group">
+          <label class="btn btn-primary" ng-model="person" ng-click="updatePerson(ratedPerson)" ng-repeat="ratedPerson in data.user.ratedPersons" btn-radio="ratedPerson" >{{::ratedPerson.name}}</label>
+        </div>
+        <!--<ul class="col-md-8 ">
+          
+            <li ng-repeat="ratedPerson in data.user.ratedPersons" >
+                
+                <a href="#" ng-click="updatePerson(ratedPerson)" >{{::ratedPerson.name}}</a>
+            </li>
+        </ul>-->
+      </div>
+      
+      
+      <!-- *************** -->
+      <!-- Rating Overview -->
+      <!-- *************** -->
+      <div ng-show="showOverview">
+        <div class="row">
+          <div class="col-sm-2"><h3><small>Bewertungskriterium<br />&nbsp;</small></h3></div>
+          <div class="col-sm-2"><h3><small>Herausragend<br />(+2)</small></h3></div>
+          <div class="col-sm-2"><h3><small>Überdurchschnittlich<br />(+1)</small></h3></div>
+          <div class="col-sm-2"><h3><small>Gut<br />(0)</small></h3></div>
+          <div class="col-sm-2"><h3><small>Unterdurchschnittlich<br />(-1)</small></h3></div>
+          <div class="col-sm-2"><h3><small>Ungenügend<br />(-2)</small></h3></div>
+        </div>
+        <hr class="fatLine"/>
+        <div ng-repeat="crit in data.criteria"> 
+          <div class="row">
+            <div class="col-sm-2"><b>{{::crit.topic}}</b></div>
+            <div class="col-sm-2"><b>{{::crit.plus}}</b></div>
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-sm-2"><b>{{::crit.zero}}</b></div>
+            <div class="col-sm-2">&nbsp;</div>
+            <div class="col-sm-2"><b>{{::crit.zero}}</b></div>
+          </div>
+          <hr />
+          <div ng-repeat="ratedMember in crit.ratedPersons">
+            <div class="row" >
+              <div class="col-sm-2"><a href="#">{{ratedMember.name}}</a></div>
+              <div class="col-sm-2 text-center" ng-repeat="rating in crit.ratings"><span ng-if="ratedMember.rating == rating.value">x</span></div>
+            </div>
+            <div class="row" >
+              <div class="col-sm-2 text-right"><h5><small>Kommentar</small></h5></div>
+              <div class="col-sm-10">{{ratedMember.comment}}</div>
+            </div>
+            <hr />
+          </div>
+          
+          <hr />
+        </div>
+      </div>
+      
+      <!-- *********** -->
+      <!-- Rating Form -->
+      <!-- *********** -->
+      
+      <div class="row" ng-show="showRatingForm">
+      <form class="form-horizontal" role="form" >
+      <fieldset>
+        <!-- Text input-->
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <label class="col-md-2 control-label" for="name" >Name</label>  
+          <div class="col-md-10"><p class="form-control-static" ng-model="person">{{person.name}}</p></div>  
+        </div>
+      </div>
+      </fieldset>
+      <hr class="col-md-12" />
+      <!-- Multiple {{crit.nr}} (inline) -->
+      <div class="row" ng-repeat="crit in data.criteria" >
+      <fieldset>
+        <div class="row">
+          <div class="col-md-2">&nbsp;</div>
+          <div class="col-md-2">{{::crit.plus}}</div>
+          <div class="col-md-2">&nbsp;</div>
+          <div class="col-md-2">{{::crit.zero}}</div>
+          <div class="col-md-2">&nbsp;</div>
+          <div class="col-md-2">{{::crit.minus}}</div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="{{crit.nr}}">{{::crit.topic}}</label>
+          <div class="col-md-2" ng-repeat="rating in crit.ratings">
+            <label class="radio-inline" >
+              <input name="Criteria{{crit.id}}" id="Criteria{{crit.id}}-0" ng-value="rating" ng-change="change()" ng-model="crit.selected.rating" type="radio">
+              {{::rating.text}}
+            </label> 
+          </div>
+        </div>
+        </fieldset>
+        <div class="form-group">
+          <div class="col-md-2">&nbsp;</div>
+          <div class="col-md-8">
+            <input id="comment{{crit.nr}}" name="comment{{crit.nr}}" ng-value="crit.comment" ng-model="crit.comment" class="form-control input-md" type="text">
+          </div>
+        </div>
+        <hr />
+      </div>
+      <!-- Button -->
+      <div class="form-group">
+        <div class="col-md-6 text-right">
+          <div ng-show="showBack">
+            <button id="back" name="back" class="btn btn-primary" ng-click="back()" >{{backText}}</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <button id="next" name="next" class="btn btn-primary" ng-click="next()" >{{nextText}}</button>
+        </div>
+      </div>
+  
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ************ -->
+  <!-- Login Modal  -->
+  <!-- ************ -->
+  
+  <modal title="P2P Assessment Login" visible="showLogin">
+  <form role="form">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="email" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password" />
+    </div>
+    <button ng-click="login()" class="btn btn-default">Login</button>
+  </form>
+  </modal>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+table{
+	width: 100%;
+	border-spacing: 0px 10px;
+}
+
+tr{
+	margin-bottom: 10px;
+}
+
+td{
+	width: 17%;
+}
+
+td.firstRow{
+	width: 15%
+}
+
+.fatLine{
+	border: 3px;
+}
