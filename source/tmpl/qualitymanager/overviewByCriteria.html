@@ -1,0 +1,51 @@
+
+
+
+      <!-- *************************** -->
+      <!-- Rating Overview by Criteria -->
+      <!-- *************************** -->
+      
+      <div>
+      
+        <!-- Rating Header -->
+        <div class="row">
+          <div class="col-sm-2">&nbsp;</div>
+          <div class="col-sm-2" ng-repeat="rating in ratingReferenceItems"><h3><small>{{::rating.description}}<br />( {{::rating.symbol}} )</small></h3></div>
+        </div>
+        
+        <!-- Iteration over criteria items -->
+        <div ng-repeat="crit in criteriaItems track by crit.id"> 
+          <hr class="fatLine"/>
+                  
+          <!-- Iteration over criteria ratingItems -->
+          <div class="row">
+            <div class="col-sm-2"><b>{{::crit.topic}}</b></div>
+            <div class="col-sm-2" ng-repeat="rating in crit.ratingItems"><b>{{::rating.description}}</b></div>
+          </div>
+          
+          <!-- Iteration over teammember items -->
+          <div class="animate-repeat" ng-repeat="teammember in teammemberItems | filter: { id: filterId } track by teammember.id ">
+            <hr/>
+            <div class="row name"> 
+              <a ng-click="toggleFilter(teammember.id)" >
+                <div class="col-sm-2 linkRow">{{teammember.name}} <a href="#" tooltip="{{teammember.role.title}}">({{teammember.role.symbol}})</a></div>
+                <div class="col-sm-10"></div>
+              </a>
+            </div><!-- end teammember info-->
+            
+            <!-- Iteration over rated by teammembers -->
+            <div class="row highlight {{ratedBy.ref}}" ng-repeat="ratedBy in teammember.TeammemberRatingItems track by ratedBy.id" >
+              <div class="col-sm-2">&nbsp;</div>
+              <!-- Iteration over rated criteria items -->
+              <div class="col-sm-2 text-center" ng-repeat="criteriaRating in crit.ratingItems track by criteriaRating.value">
+                <div ng-repeat="ratedCriteria in ratedBy.criteriaItems | filter: { criteriaId: crit.id, rating: criteriaRating.value } :true ">
+                  <a href="#" tooltip-html-unsafe="{{ratedCriteria.tooltip}}" tooltip-placement="right"><div class="circle ref{{criteriaRating.ref}} linkRow" >{{criteriaRating.symbol}}</div></a>
+                </div>
+              </div><!-- end rated crieria items -->
+            </div><!-- end rated by teammembers -->
+
+          </div><!-- end teammmeber items-->
+          
+        </div><!-- end criteria items -->     
+           
+      </div>

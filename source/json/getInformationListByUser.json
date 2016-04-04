@@ -1,0 +1,19 @@
+{    
+    "informationItems" : [
+    	{
+    		"id" : "12",
+    		"type" : "info",
+    		"text" : "Es wurden neue Kritierien hinzugefügt. und drum wird's ein sehr langer Text der hoffentlich auf die nächste Zeile springt, das wäre schön."
+    	},
+    	{
+    		"id" : "23",
+    		"type" : "warning",
+    		"text" : "Das p2p Assessment endet am 12. Mai 2015!"
+    	},
+    	{
+    		"id" : "99",
+    		"type" : "danger",
+    		"text" : "Die Applikation steht aktuell nicht zur Verfügung."
+    	}
+    ]
+}

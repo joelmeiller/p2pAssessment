@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>P2P Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="P2P Assessment Form for IP projects@FHNW">
+  <meta name="author" content="Joël Meiller">
+	
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script type="text/javascript" data-main="js/main" src="js/vendor/require.js"></script>
+
+  <!--<script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/allData.js"></script>
+  <script type="text/javascript" src="js/allDataServerService.js"></script>
+  <script type="text/javascript" src="js/selfData.js"></script>
+  <script type="text/javascript" src="js/selfDataServerService.js"></script>
+  <script type="text/javascript" src="js/loginService.js"></script>
+  <script type="text/javascript" src="js/infoService.js"></script>-->
+
+   
+</head>
+
+<body ng-controller="ipAppCtrl" >
+  <div class="container">
+  
+    <!-- *************** -->
+    <!-- Title Jumbotron -->
+    <!-- *************** -->
+    <div class="row rowBuffer">
+      <div ui-sref-active="navActive" class="nav navbar-fixed-top text-right loginBuffer">
+        <p ng-show="login.loggedIn">Angemeldet als {{user.name}} | <a ui-sref="login" ng-click="logout()">Abmelden</a></p>
+        <p ng-hide="login.loggedIn"><a ui-sref="login" ng-click="loginModal()">Anmelden</a></p>
+      </div>
+    </div>
+    
+    <div class="row rowBuffer">
+      <div class="col-sm-5">
+        <h1>P2P - Assessement</h1>
+        <h1 ng-show="login.loggedIn"><small>{{project.title}}</small></h1>     
+      </div>
+      <div class="col-sm-7 informationBuffer">
+        <alert class="information" ng-repeat="info in infoItems track by $index" type="{{info.type}}" close="deleteInfoItem($index)">{{info.text}}</alert>
+      </div>
+    </div>   
+    <!-- *************** -->
+    <!-- Content         -->
+    <!-- *************** -->    
+    <div class="row" ng-show="project.show">
+        
+      <!-- ********** -->
+      <!-- Navigation -->
+      <!-- ********** -->
+
+      <nav class="navbar navbar-inverse" role="navigation">
+        <ul class="nav navbar-nav col-sm-8" >
+        
+          <li ng-show="user.options.self" ><a ui-sref="selfOverview.byCriteria">Übersicht</a></li>
+          <li ng-show="user.options.all" ><a ui-sref="overview.byCriteria">Übersicht</a></li>
+          
+	      <li ng-hide="user.options.self || user.options.all" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Übersicht <span class="caret" /></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ui-sref="selfOverview.byCriteria">Eigene Bewertung</a></li>
+              <li class="divider"></li>
+              <li><a ui-sref="overview.byCriteria">Gesamtübersicht</a></li>
+            </ul>
+          </li>  
+
+          <li ng-show="user.options.rating.available"><a ui-sref="ratingForm">Bewertung</a></li>
+                
+          <li ng-show="user.options.edit" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bearbeiten <span class="caret" /></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ui-sref="overview.modifyCriteria">Kriterien</a></li>
+              <li class="divider"></li>
+              <li><a ui-sref="overview.modifyTeammember">Teammitglieder</a></li>
+            </ul>
+          </li>
+        </ul>
+                
+        <div class="col-sm-4 text-right buttonBuffer" ng-show="user.options.rating.available">
+          <button type="button" ng-hide="user.options.rating.closed" class="btn btn-danger" ng-click="closeUserRating()" >Bewertung abschliessen</button>
+          <button type="button" ng-show="user.options.rating.closed" class="btn btn-primary" disabled >Bewertung abgeschlossen</button>
+        </div>
+
+      </nav>     
+    </div>
+    
+    <div ui-view></div>
+    
+    <div class="row text-right">
+      <h4><small>created by Joël Meiller</small></h4>
+    </div>
+
+  </div>
+  
+  <!-- ************ -->
+  <!-- Login Modal  -->
+  <!-- ************ -->
+  <script type="text/ng-template" id="loginModal.html">
+  
+	<div class="modal-header">
+		<h3 class="modal-title">P2P Assessment Login</h3>
+	</div>
+	
+	<div class="modal-body">  
+      <div ng-if="hasInfo" class="alert alert-danger" role="alert">{{loginInfo}}</div>
+	  <form role="form">
+		<div class="form-group">
+		  <label for="email">Benutzername</label>
+		  <input type="text" class="form-control" placeholder="" ng-model="credentials.uname" />
+		</div>
+		<div class="form-group">
+		  <label for="password">Passwort</label>
+		  <input type="password" class="form-control" placeholder="" ng-model="password" />
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="form-group text-center">
+	      <button ng-click="login()" class="btn btn-primary">Login</button>
+		</div>
+	  </form>
+	</div>
+  </script>
+
+
+</body>
+</html>
